@@ -31,10 +31,15 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Login authentication
-# gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-linkedin'
+
+# Image attachment
+gem 'paperclip', '~> 5.0.0'
+
+# Nested forms
+gem 'nested_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
