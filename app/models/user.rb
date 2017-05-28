@@ -5,8 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
      :omniauthable, :omniauth_providers => [:linkedin]
 
-  has_one :buyer
-  has_one :seller
+  has_one :buyer, dependent: :destroy
+  has_one :seller, dependent: :destroy
+
+  enum user_type: {
+    buyer: 0,
+    seller: 1
+  }
 
    def self.from_omniauth(auth)
        where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
