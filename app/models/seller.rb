@@ -3,6 +3,7 @@ class Seller < ApplicationRecord
   belongs_to :company, optional: true
   has_many :employers, as: :employable, dependent: :destroy
   accepts_nested_attributes_for :employers, allow_destroy: true
+  before_destroy :clear_employers
 
   enum gender: {
     male: 0,
@@ -24,4 +25,10 @@ class Seller < ApplicationRecord
   validates :phone, :presence => true
   validates :address, :presence => true
   validates :equity, :presence => true
+
+  private
+
+    def clear_employers
+      self.employers.destroy_all
+    end
 end
