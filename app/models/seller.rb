@@ -1,6 +1,6 @@
 class Seller < ApplicationRecord
   belongs_to :user
-  belongs_to :company
+  belongs_to :company, optional: true
   has_many :employers, as: :employable, dependent: :destroy
   accepts_nested_attributes_for :employers, allow_destroy: true
 
@@ -18,8 +18,6 @@ class Seller < ApplicationRecord
     master: 4,
     professional: 5
   }
-
-  serialize :expertise
 
   validates :name, :presence => true
   validates :corporate_email, :presence => true

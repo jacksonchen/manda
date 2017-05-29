@@ -8,6 +8,5 @@ Rails.application.routes.draw do
   root to: 'static_page#index'
 
   resources :buyers
-
-  resources :seller
+  resources :sellers
 end

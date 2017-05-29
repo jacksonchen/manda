@@ -40,7 +40,7 @@ class BuyersController < ApplicationController
       params.require(:buyer).permit(:company, :company_role, :name,
         :corporate_email, :phone, :address, :gender, :age, :education, :education_institution,
         :expertise, :linkedin, :startup_background, :about,
-        employers_attributes: [:employable_type, :employable_id, :name, :role]
+        employers_attributes: [:employable_type, :employable_id, :name, :role, :_destroy]
         )
     end
 end

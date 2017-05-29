@@ -1,0 +1,100 @@
+<h2>Registration for Seller</h2>
+
+<%= nested_form_for(@seller) do |f| %>
+  <% if @seller.errors.any? %>
+  <ul>
+    <% @seller.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :company_role %><br />
+    <%= f.text_field :company_role, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :corporate_email %><br />
+    <%= f.email_field :corporate_email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, [['Male', 'male'], ['Female', 'female'], ['Other', 'other']] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education, "Highest completed level of education" %><br />
+    <%= f.select :education, [['Less than High School', 'lower'], ['High School', 'high_school'],
+                              ['Associate\'s degree', 'associate'], ['Bachelor\'s degree', 'bachelor'],
+                              ['Master\'s degree', 'master'], ['Doctoral or professional degree', 'professional']] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_institution, "Institution where you completed that level of education" %><br />
+    <%= f.text_field :education_institution %>
+  </div>
+
+  <%= f.fields_for :employers do |ff| %>
+    <div class="field">
+      <%= ff.label :name %><br />
+      <%= ff.text_field :name %>
+    </div>
+    <div class="field">
+      <%= ff.label :role %><br />
+      <%= ff.text_field :role %>
+    </div>
+    <%= ff.link_to_remove "Remove previous employer" %>
+  <% end %>
+  <%= f.link_to_add "Add previous employer", :employers %>
+
+  <div class="field">
+    <%= f.label :expertise, "List your areas of expertise (comma separated)" %><br />
+    <%= f.text_field :expertise %>
+  </div>
+
+  <div class="field">
+    <%= f.label :linkedin, "Link to Linkedin profile" %><br />
+    <%= f.text_field :linkedin %>
+  </div>
+
+  <div class="field">
+    <%= f.label :equity, "How much equity do you have in the startup you are selling?" %><br />
+    <%= f.number_field :equity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ssn, "Social Security Number (for background check purposes)" %><br />
+    <%= f.text_field :ssn %>
+  </div>
+
+  <div class="field">
+    <%= f.label :about, "Tell us a bit more about yourself" %><br />
+    <%= f.text_area :about %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
