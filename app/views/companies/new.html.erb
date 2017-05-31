@@ -1,0 +1,126 @@
+<h2>Startup Information</h2>
+
+<%= nested_form_for(@company) do |f| %>
+  <% if @company.errors.any? %>
+  <ul>
+    <% @company.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Company name" %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url, "URL of company" %><br />
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "Company contact email address" %><br />
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone, "Company phone number" %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price, "Selling Price" %><br />
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :founded, "Year company established" %><br />
+    <%= f.number_field :founded %>
+  </div>
+
+  <div class="field">
+    <%= f.label :opportunity, "End goal" %><br />
+    <%= f.select :opportunity, [['Selling entirely', 'selling_entirely'], ['Looking for opportunities', 'looking_for_opportunities'], ['Selling part of company', 'selling_partly']] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location, "Headquarter location" %><br />
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= f.label :financials, "Financial Data (revenue, costs, profit, equity allocation and division)" %><br />
+    <%= f.text_area :financials %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_categories, "Company Categories" %><br />
+    <%= f.select(:company_categories, @cc.collect {|a| [a.name, a.id]}) -%>
+  </div>
+
+  <div class="field">
+    <%= f.label :about, "Description of company: what does it do, how does it do it, why is it new and different" %><br />
+    <%= f.text_area :about %>
+  </div>
+
+  <div class="field">
+    <%= f.label :logo, "Company Logo" %><br />
+    <%= f.file_field :logo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :funding_report, "Previous Funding Reports" %><br />
+    <%= f.file_field :funding_report %>
+  </div>
+
+  <div class="field">
+    <%= f.label :userbase_analytics, "Userbase Analytics" %><br />
+    <%= f.file_field :userbase_analytics %>
+  </div>
+
+  <div class="field">
+    <%= f.label :finances, "Financial Statements" %><br />
+    <%= f.file_field :finances %>
+  </div>
+
+  <div class="field">
+    <%= f.label :llc, "LLC Registration" %><br />
+    <%= f.file_field :llc %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tax, "Tax Returns" %><br />
+    <%= f.file_field :tax %>
+  </div>
+
+  <div class="field">
+    <%= f.label :equity_division, "Equity division between Founders Contract" %><br />
+    <%= f.file_field :equity_division %>
+  </div>
+
+  <div class="field">
+    <%= f.label :originality, "Is any part of your codebase not within your intellectual property? If so, describe how you could legally sell the startup" %><br />
+    <%= f.text_area :originality %>
+  </div>
+
+  <div class="field">
+    <%= f.label :legal, "Is there anything else we should know about your company? (Pending lawsuits, cofounders who left, entering a new round of funding, etc)" %><br />
+    <%= f.text_area :legal %>
+  </div>
+
+  <%= f.fields_for :users do |ff| %>
+    <div class="field">
+      <%= ff.label :email %><br />
+      <%= ff.text_field :email %>
+
+      <%= ff.hidden_field :password, value: "password" %>
+    </div>
+    <%= ff.link_to_remove "Remove co-founder" %>
+  <% end %>
+  <%= f.link_to_add "Add co-founder", :users %>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>

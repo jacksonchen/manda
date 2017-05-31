@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528162417) do
+ActiveRecord::Schema.define(version: 20170530200540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,10 @@ ActiveRecord::Schema.define(version: 20170528162417) do
     t.string   "equity_division_content_type"
     t.integer  "equity_division_file_size"
     t.datetime "equity_division_updated_at"
+    t.string   "finances_file_name"
+    t.string   "finances_content_type"
+    t.integer  "finances_file_size"
+    t.datetime "finances_updated_at"
   end
 
   create_table "companies_company_categories", id: false, force: :cascade do |t|
