@@ -8,8 +8,22 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params.except(:users_attributes))
     @cc = CompanyCategory.all
     @company.company_categories << CompanyCategory.find(params[:company][:company_categories])
-    # @user = User.new(params[:company][:users_attributes])
-    if @company.save #&& @user.save
+    if !company_params[:users_attributes].nil?
+      company_params[:users_attributes].keys.each do |userKey|
+        @user = User.new(company_params[:users_attributes][userKey])
+        @user.user_type = "seller"
+        if @user.save
+          FounderMailer.welcome(@user, current_user).deliver # TODO: Add a way to link company + new user
+        else
+          self.errors.add(:users_attributes, "User #{@user.email} did not save")
+        end
+      end
+    end
+
+    sellerChange = current_user.seller
+    sellerChange.company = @company
+
+    if @company.save && sellerChange.save
       redirect_to root_path
     else
       render 'new'
