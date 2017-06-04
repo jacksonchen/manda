@@ -5,10 +5,12 @@ class FounderMailer < ApplicationMailer
   #
   #   en.founder_mailer.welcome.subject
   #
-  def welcome(user, sender)
+  def welcome(invite, url)
     @greeting = "Hi"
-    @sender = sender.seller.name
+    @sender = invite.sender.seller.name
+    @company = invite.sender.seller.company.name
+    @url = url
 
-    mail to: user.email
+    mail to: invite.email
   end
 end

@@ -1,7 +1,8 @@
-<h1>Founder#welcome</h1>
+<h1>Welcome Founder</h1>
 
 <p>
-  <%= @greeting %>, find me in app/views/founder_mailer/welcome.html.erb
-
-  Your team member <%= @sender %> added you :)
+  <%= @greeting %>, your team member <%= @sender %> added you to <%= @company %>. :)
+</p>
+<p>
+  To accept this invite, please sign up at this link: <%= link_to "Sign up", @url %>
 </p>

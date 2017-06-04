@@ -21,7 +21,8 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <%= f.hidden_field :user_type, value: params[:user_type] %>
+  <%= f.hidden_field :user_type, value: @user_type %>
+  <%= f.hidden_field :token, value: @token %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

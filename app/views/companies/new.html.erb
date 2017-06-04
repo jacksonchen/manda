@@ -109,16 +109,14 @@
     <%= f.text_area :legal %>
   </div>
 
-  <%= f.fields_for :users do |ff| %>
+  <%= f.fields_for :invites do |ff| %>
     <div class="field">
       <%= ff.label :email %><br />
       <%= ff.text_field :email %>
-
-      <%= ff.hidden_field :password, value: "password" %>
     </div>
     <%= ff.link_to_remove "Remove co-founder" %>
   <% end %>
-  <%= f.link_to_add "Add co-founder", :users %>
+  <%= f.link_to_add "Add co-founder", :invites %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
