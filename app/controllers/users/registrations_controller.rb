@@ -4,27 +4,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    super
-    @user_type = param[:user_type]
-    @token = param[:token]
+    @user_type = params[:user_type]
+    @token = params[:token]
     if !@token.nil?
       @user_type = "seller"
     end
+    super
   end
 
   # POST /resource
   def create
-    super
-    if !param[:token].nil?
-      invite = Invite.find_by_token(param[:token])
+    if !params[:user][:token].nil?
+      invite = Invite.find_by_token(params[:user][:token])
+
       if invite.accepted == false
         invite.accepted = true
         invite.recipient = current_user
-        @company = invite.company
-        @company.sellers << current_user
-        @company.save
+        invite.save
       end
     end
+    super
   end
 
   # GET /resource/edit
