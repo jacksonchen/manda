@@ -15,8 +15,14 @@ class CompaniesController < ApplicationController
     if @company.save && sellerChange.save
       @company.invites.each do |invite|
         invite.sender = current_user
+        if !User.find_by_email(invite.email).nil?
+          invite.recipient = User.find_by_email(invite.email)
+          FounderMailer.welcome(invite, request.base_url + new_user_session(:token => invite.token)).deliver
+        else
+          FounderMailer.welcome(invite, request.base_url + new_user_registration_path(:token => invite.token)).deliver
+        end
         invite.save
-        FounderMailer.welcome(invite, request.base_url + new_user_registration_path(:token => invite.token)).deliver
+
       end
       redirect_to root_path
     else

@@ -22,41 +22,41 @@ class Company < ApplicationRecord
   has_attached_file :tax
   has_attached_file :equity_division
 
-  # validates :name, :presence => true
-  # validates :url, :presence => true
-  # validates :phone, :presence => true
-  # validates :founded, :presence => true
-  # validates :email, :presence => true
-  # validates :financials, :presence => true
-  # validates :originality, :presence => true
-  # validates :legal, :presence => true
-  # validates :price, :presence => true
+  validates :name, :presence => true
+  validates :url, :presence => true
+  validates :phone, :presence => true
+  validates :founded, :presence => true
+  validates :email, :presence => true
+  validates :financials, :presence => true
+  validates :originality, :presence => true
+  validates :legal, :presence => true
+  validates :price, :presence => true
 
-  validates_attachment :logo, #:presence => true,
+  validates_attachment :logo, :presence => true,
     content_type: { content_type: ["image/jpeg", "image/png"] },
     size: { in: 0..3.megabytes }
 
-  validates_attachment :funding_report, #:presence => true,
+  validates_attachment :funding_report, :presence => true,
     content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
     size: { in: 0..3.megabytes }
 
-  validates_attachment :userbase_analytics, #:presence => true,
+  validates_attachment :userbase_analytics, :presence => true,
     content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
     size: { in: 0..3.megabytes }
 
-  validates_attachment :finances, #:presence => true,
+  validates_attachment :finances, :presence => true,
     content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
     size: { in: 0..3.megabytes }
 
-  validates_attachment :llc, #:presence => true,
+  validates_attachment :llc, :presence => true,
     content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
     size: { in: 0..3.megabytes }
 
-  validates_attachment :tax, #:presence => true,
+  validates_attachment :tax, :presence => true,
     content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
     size: { in: 0..3.megabytes }
 
-  validates_attachment :equity_division, #:presence => true,
+  validates_attachment :equity_division, :presence => true,
     content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
     size: { in: 0..3.megabytes }
 

@@ -20,6 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if invite.accepted == false
         invite.accepted = true
         invite.recipient = current_user
+        @company = invite.company
+        @company.sellers << current_user
+        @company.save
       end
     end
   end
