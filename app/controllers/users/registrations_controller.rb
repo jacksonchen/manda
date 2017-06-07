@@ -7,23 +7,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user_type = params[:user_type]
     @token = params[:token]
     if !@token.nil?
-      @user_type = "seller"
+      if Invite.find_by_token(@token).nil?
+        flash[:error] = "The link that you clicked on has expired"
+        redirect_to :root
+      else
+        @user_type = "seller"
+      end
     end
     super
   end
 
   # POST /resource
   def create
-    if !params[:user][:token].nil?
-      invite = Invite.find_by_token(params[:user][:token])
-
-      if invite.accepted == false
-        invite.accepted = true
-        invite.recipient = current_user
-        invite.save
+    super do
+      if !params[:user][:token].nil?
+        invite = Invite.find_by_token(params[:user][:token])
+        if !invite.nil? && invite.accepted == false
+          invite.accepted = true
+          invite.recipient = resource
+          invite.save
+        end
       end
     end
-    super
   end
 
   # GET /resource/edit

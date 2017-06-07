@@ -7,6 +7,11 @@ class SellersController < ApplicationController
     @seller = Seller.new(seller_params)
     @seller.user_id = current_user.id
     @seller.expertise = seller_params[:expertise].split(',')
+    invite = current_user.invitations.where(accepted: true).first
+    if !invite.nil?
+      @seller.company = invite.company
+    end
+    
     if @seller.save
       redirect_to root_path
     else
