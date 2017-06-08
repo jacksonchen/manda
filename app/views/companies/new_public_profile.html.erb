@@ -1,0 +1,32 @@
+<h2>Company Public Profile</h2>
+
+<%= form_for @company, url: company_create_public_profile_path(@company), method: :post do |f| %>
+  <div class="field">
+    <%= f.label :about, "About" %><br />
+    <%= f.text_area :about, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :available, "% of company being sold" %><br />
+    <%= f.number_field :available %>
+  </div>
+
+  <div class="field">
+    <%= f.label :financials, "Financial data" %><br />
+    <%= f.text_area :financials %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_base, "Userbase" %><br />
+    <%= f.text_area :user_base %>
+  </div>
+
+  <div class="field">
+    <%= f.label :growth, "Traffic and growth" %><br />
+    <%= f.text_area :growth %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save Profile" %>
+  </div>
+<% end %>

@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
 
@@ -51,6 +52,28 @@ class CompaniesController < ApplicationController
 
   end
 
+  def new_public_profile
+    if Company.find_by_id(params[:company_id]).nil?
+      flash[:error] = "Page does not exist"
+      redirect_to :root
+    elsif current_user.seller.nil? || current_user.seller.company.id != params[:company_id].to_i
+      flash[:error] = "You do not have permission to access that page!"
+      redirect_to :root
+    else
+      @company = Company.find_by_id(params[:company_id])
+    end
+  end
+
+  def create_public_profile
+    @company = Company.find_by_id(params[:company_id])
+    if @company.update_attributes(profile_params)
+      flash[:success] = "Company profile successfully saved!"
+      redirect_to :root
+    else
+      render 'new_public_profile'
+    end
+  end
+
   private
 
     def company_params
@@ -61,5 +84,11 @@ class CompaniesController < ApplicationController
       :originality, :legal,
       invites_attributes: [:email]
         )
+    end
+
+    def profile_params
+      params.require(:company).permit(:about, :available,
+        :financials, :user_base, :growth)
+
     end
 end

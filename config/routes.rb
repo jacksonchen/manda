@@ -10,5 +10,8 @@ Rails.application.routes.draw do
 
   resources :buyers
   resources :sellers
-  resources :companies
+  resources :companies do
+    get '/profile/new', to: 'companies#new_public_profile', as: :new_public_profile
+    post '/profile/new', to: 'companies#create_public_profile', as: :create_public_profile
+  end
 end

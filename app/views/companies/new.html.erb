@@ -75,11 +75,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :userbase_analytics, "Userbase Analytics" %><br />
-    <%= f.file_field :userbase_analytics %>
-  </div>
-
-  <div class="field">
     <%= f.label :finances, "Financial Statements" %><br />
     <%= f.file_field :finances %>
   </div>
@@ -119,6 +114,6 @@
   <%= f.link_to_add "Add co-founder", :invites %>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Submit Company" %>
   </div>
 <% end %>
