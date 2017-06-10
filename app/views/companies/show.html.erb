@@ -1,0 +1,21 @@
+<div>
+  <aside>
+    <%= image_tag(@company.logo) %>
+  </aside>
+  <section>
+    <div>
+      <%= @company.name %>
+    </div>
+    <div>
+      $<%= @company.price %> for <%= @company.available %>% of the company
+    </div>
+  </section>
+  <section>
+    <div class="title">
+      Company Info:
+    </div>
+    <p>
+      <%= @company.about %>
+    </p>
+  </section>
+</div>

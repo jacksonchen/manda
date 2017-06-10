@@ -41,7 +41,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-
+    @company = Company.find_by_id(params[:id])
   end
 
   def update
@@ -81,7 +81,7 @@ class CompaniesController < ApplicationController
       :price, :founded, :opportunity, :location, :financials,
       :about, :logo, :funding_report,
       :userbase_analytics, :finances, :llc, :tax, :equity_division,
-      :originality, :legal,
+      :originality, :legal, :approval,
       invites_attributes: [:email]
         )
     end

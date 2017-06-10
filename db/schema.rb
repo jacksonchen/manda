@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603120601) do
+ActiveRecord::Schema.define(version: 20170610143943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "buyers", force: :cascade do |t|
-    t.string   "company"
-    t.string   "company_role"
+    t.string   "business"
+    t.string   "business_role"
     t.string   "name"
     t.integer  "age"
     t.string   "corporate_email"
@@ -82,6 +82,9 @@ ActiveRecord::Schema.define(version: 20170603120601) do
     t.string   "finances_content_type"
     t.integer  "finances_file_size"
     t.datetime "finances_updated_at"
+    t.integer  "approval"
+    t.integer  "buyer_id"
+    t.index ["buyer_id"], name: "index_companies_on_buyer_id", using: :btree
   end
 
   create_table "companies_company_categories", id: false, force: :cascade do |t|

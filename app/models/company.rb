@@ -1,7 +1,7 @@
 class Company < ApplicationRecord
   has_many :sellers
   has_many :invites
-  has_one :buyer
+  belongs_to :buyer
   has_and_belongs_to_many :company_categories
   accepts_nested_attributes_for :sellers, allow_destroy: true
   accepts_nested_attributes_for :invites, allow_destroy: true
@@ -10,6 +10,12 @@ class Company < ApplicationRecord
     selling_entirely: 0,
     looking_for_opportunities: 1,
     selling_partly: 2
+  }
+
+  enum approval: {
+    rejected: 0,
+    pending: 1,
+    approved: 2,
   }
 
   has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
@@ -31,6 +37,7 @@ class Company < ApplicationRecord
   validates :originality, :presence => true
   validates :legal, :presence => true
   validates :price, :presence => true
+  validates :approval, :presence => true
 
   validates_attachment :logo, :presence => true,
     content_type: { content_type: ["image/jpeg", "image/png"] },

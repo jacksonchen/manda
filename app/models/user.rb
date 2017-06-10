@@ -14,7 +14,8 @@ class User < ApplicationRecord
 
   enum user_type: {
     buyer: 0,
-    seller: 1
+    seller: 1,
+    admin: 2
   }
 
    def self.from_omniauth(auth)

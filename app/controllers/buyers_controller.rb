@@ -1,6 +1,6 @@
 class BuyersController < ApplicationController
   def index
-
+    @companies = Company.where(approval: "approved", buyer_id: nil)
   end
 
   def create

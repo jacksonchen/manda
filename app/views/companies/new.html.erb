@@ -113,6 +113,8 @@
   <% end %>
   <%= f.link_to_add "Add co-founder", :invites %>
 
+  <%= f.hidden_field :approval, value: 1 %>
+
   <div class="actions">
     <%= f.submit "Submit Company" %>
   </div>
