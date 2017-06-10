@@ -66,4 +66,6 @@ Rails.application.configure do
     :user_name => "postmaster@sandboxfecd2aadd1a846d0b4b0772e4b2d2b7e.mailgun.org",
     :password => "6a97d045979a50d6d8efdd9e181962d2"
   }
+
+  config.action_cable.url = "ws://localhost:3000/cable"
 end

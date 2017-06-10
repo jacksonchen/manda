@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_one :seller, dependent: :destroy
   has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
   has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
+  has_many :messages
+  has_many :conversations
 
   attr_accessor :token #Virtual attribute for token
 

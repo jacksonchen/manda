@@ -14,4 +14,8 @@ Rails.application.routes.draw do
     get '/profile/new', to: 'companies#new_public_profile', as: :new_public_profile
     post '/profile/new', to: 'companies#create_public_profile', as: :create_public_profile
   end
+
+  mount ActionCable.server => '/cable'
+  resources :conversations, param: :id
+  resources :messages
 end

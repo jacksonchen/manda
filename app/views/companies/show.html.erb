@@ -18,4 +18,7 @@
       <%= @company.about %>
     </p>
   </section>
+  <section>
+    <%= link_to "Message", conversations_path(company: @company), method: :post %>
+  </section>
 </div>

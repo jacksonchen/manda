@@ -1,0 +1,18 @@
+<h1><%= @conversation.company.name %></h1>
+
+<section class="conversation">
+  <% if @conversation.messages.any? %>
+    <div id="messages">
+      <ul>
+      <%#= render partial: 'messages/message', collection: @conversation.messages, as: :messages %>
+        <% @conversation.messages.each do |message| %>
+          <li><%= message.content %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% else %>
+    <div class="hidden" id="messages">
+    </div>
+  <% end %>
+  <%= render partial: 'messages/message_form', locals: { message: @message, conversation: @conversation } %>
+</section>
