@@ -102,8 +102,10 @@ ActiveRecord::Schema.define(version: 20170610160628) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "company_id"
+    t.integer  "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_conversations_on_buyer_id", using: :btree
     t.index ["company_id"], name: "index_conversations_on_company_id", using: :btree
   end
 

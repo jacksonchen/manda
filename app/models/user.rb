@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
   has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
   has_many :messages
-  has_many :conversations
+  has_many :conversations, through: :messages
 
   attr_accessor :token #Virtual attribute for token
 
@@ -27,5 +27,15 @@ class User < ApplicationRecord
          user.email = auth.info.email
          user.password = Devise.friendly_token[0,20]
        end
+   end
+
+   def name
+     if !self.buyer.nil?
+       return self.buyer.name
+     elsif !self.seller.nil?
+       return self.seller.name
+     else
+       return nil
+     end
    end
 end

@@ -3,12 +3,11 @@
 <section class="conversation">
   <% if @conversation.messages.any? %>
     <div id="messages">
-      <ul>
-      <%#= render partial: 'messages/message', collection: @conversation.messages, as: :messages %>
-        <% @conversation.messages.each do |message| %>
-          <li><%= message.content %></li>
-        <% end %>
-      </ul>
+      <% @conversation.messages.each do |message| %>
+        <p>
+          <b><%= message.user.name %></b>: <%= message.content %>
+        </p>
+      <% end %>
     </div>
   <% else %>
     <div class="hidden" id="messages">
