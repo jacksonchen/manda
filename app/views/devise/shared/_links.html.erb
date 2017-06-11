@@ -1,25 +1,44 @@
-<%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
-<% end -%>
+<div class="shared-links">
+  <div class="container">
+    <%- if controller_name != 'sessions' %>
+      <%= link_to "Log in", new_session_path(resource_name) %><br />
+    <% end -%>
+  </div>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end -%>
+  <div class="container">
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <%= link_to "Sign up", new_registration_path(resource_name) %>
+    <% end -%>
+  </div>
 
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-<% end -%>
+  <div class="container">
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+    <% end -%>
+  </div>
 
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
-<% end -%>
+  <div class="container">
+    <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+      <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
+    <% end -%>
+  </div>
 
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
-<% end -%>
+  <div class="container">
+    <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+      <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %>
+    <% end -%>
+  </div>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider, user_type: params[:user_type]) %><br />
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <div class="container">
+        <%= link_to omniauth_authorize_path(resource_name, provider, user_type: params[:user_type]) do %>
+          <%= image_tag("#{OmniAuth::Utils.camelize(provider)}.png", width: "200px", alt: "Sign in with #{OmniAuth::Utils.camelize(provider)}",
+                        onMouseover: "this.src='/assets/#{OmniAuth::Utils.camelize(provider)}-hover.png'",
+                        onMouseout: "this.src='/assets/#{OmniAuth::Utils.camelize(provider)}.png'",
+                        onMouseclick: "this.src='/assets/#{OmniAuth::Utils.camelize(provider)}-active.png'") %>
+        <% end %>
+      </div>
+    <% end -%>
   <% end -%>
-<% end -%>
+</div>

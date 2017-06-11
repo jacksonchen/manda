@@ -5,16 +5,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     @user_type = params[:user_type]
-    @token = params[:token]
-    if !@token.nil?
-      if Invite.find_by_token(@token).nil?
-        flash[:error] = "The link that you clicked on has expired"
-        redirect_to :root
+    if @user_type != "seller" && @user_type != "buyer" && @user_type != nil
+      flash[:error] = "The page you requested is unavailable"
+      redirect_to :root
+    else
+      @token = params[:token]
+      if !@token.nil?
+        if Invite.find_by_token(@token).nil?
+          flash[:error] = "The link that you clicked on no longer exists"
+          redirect_to :root
+        else
+          @user_type = "seller"
+          super
+        end
       else
-        @user_type = "seller"
+        super
       end
     end
-    super
   end
 
   # POST /resource

@@ -1,4 +1,8 @@
-<%= link_to "Register as buyer", new_user_registration_path(:user_type => "buyer")  %>
-<br>
-<%= link_to "Register as seller", new_user_registration_path(:user_type => "seller") %>
-  
+<div class="container-fluid unauth">
+  <div class="col-md-6 register" id="buyerBackground">
+    <%= link_to "Register as buyer", new_user_registration_path(:user_type => "buyer")  %>
+  </div>
+  <div class="col-md-6 register" id="sellerBackground">
+    <%= link_to "Register as seller", new_user_registration_path(:user_type => "seller") %>
+  </div>
+</div>
