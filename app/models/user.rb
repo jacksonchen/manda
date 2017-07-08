@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
   has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
   has_many :messages
+  has_many :messages_received, class_name: "Message", as: :recipient
   has_many :conversations, through: :messages
 
   attr_accessor :token #Virtual attribute for token

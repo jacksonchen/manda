@@ -5,7 +5,11 @@
     <div id="messages">
       <% @conversation.messages.each do |message| %>
         <p>
-          <b><%= message.user.name %></b>: <%= message.content %>
+          <% if message.user.seller? %>
+            <b><%= message.user.seller.company.name %></b>: <%= message.content %>
+          <% else %>
+            <b><%= message.user.name %></b>: <%= message.content %>
+          <% end %>
         </p>
       <% end %>
     </div>

@@ -2,6 +2,7 @@ class Company < ApplicationRecord
   has_many :sellers
   has_many :invites
   has_many :conversations
+  has_many :messages, as: :recipient
   belongs_to :buyer
   has_and_belongs_to_many :company_categories
   accepts_nested_attributes_for :sellers, allow_destroy: true

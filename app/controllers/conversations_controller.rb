@@ -3,7 +3,11 @@ class ConversationsController < ApplicationController
   before_action :convo_permissions, only: [:show]
 
   def index
-
+    if current_user.seller?
+      @conversations = current_user.seller.company.conversations
+    else
+      @conversations = current_user.conversations
+    end
   end
 
   def create
