@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
       message.recipient = message.conversation.company
     end
     if message.save
-      if !current_user.buyer.nil?
+      if current_user.buyer?
         ActionCable.server.broadcast 'messages',
           message: message.content,
           user: message.user.name

@@ -2,7 +2,7 @@ class Message < ApplicationRecord
   belongs_to :conversation
   belongs_to :user
   belongs_to :recipient, polymorphic: true
-  has_many :notifications, as: :event
+  has_many :notifications, as: :event, dependent: :destroy
 
   after_create :send_notification
 

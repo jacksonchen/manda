@@ -4,10 +4,14 @@
     <h3>Conversations</h3>
     <ul class="list-group">
       <% @conversations.each do |conversation| %>
-        <li class="list-group-item">
-          <%= link_to conversation.getPartner(current_user), conversation_path(conversation) %>
-          <span class="badge badge-default badge-pill">14</span>
-        </li>
+        <%= link_to(conversation_path(conversation)) do %>
+          <li class="list-group-item">
+            <%= conversation.getPartner(current_user) %>
+            <% if current_user.has_notifications > 0 %>
+              <span class="badge badge-default badge-pill"><%= current_user.has_notifications%></span>
+            <% end %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>

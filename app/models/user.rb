@@ -11,7 +11,8 @@ class User < ApplicationRecord
   has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
   has_many :messages
   has_many :messages_received, class_name: "Message", as: :recipient
-  has_many :conversations, through: :messages
+  has_many :conversations, -> { distinct }, through: :messages
+  has_many :notifications
 
   attr_accessor :token #Virtual attribute for token
 
@@ -38,5 +39,9 @@ class User < ApplicationRecord
      else
        return nil
      end
+   end
+
+   def has_notifications
+     return self.notifications.where(read: false).count
    end
 end

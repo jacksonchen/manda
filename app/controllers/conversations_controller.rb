@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
   before_action :convo_permissions, only: [:show]
+  # before_action :update_notifications, only: [:show]
 
   def index
     if current_user.seller?
@@ -43,4 +44,9 @@ class ConversationsController < ApplicationController
        redirect_to root_path
     end
   end
+
+  # def update_notifications
+  #   @conversation = Conversation.find_by_id(params[:id])
+  #   @conversation.messages.includes(:notifications).update_all({read: true})
+  # end
 end
