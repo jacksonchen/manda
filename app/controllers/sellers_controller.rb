@@ -1,6 +1,6 @@
 class SellersController < ApplicationController
   def index
-
+    @buyers = Buyer.all
   end
 
   def create
@@ -11,7 +11,7 @@ class SellersController < ApplicationController
     if !invite.nil?
       @seller.company = invite.company
     end
-    
+
     if @seller.save
       redirect_to root_path
     else

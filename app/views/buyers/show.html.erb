@@ -1,27 +1,25 @@
 <div class="container-fluid">
   <div class="col-md-3"></div>
   <div class="col-md-6 centerContent">
-    <aside>
-      <%= image_tag(@company.logo) %>
-    </aside>
     <section>
       <div>
-        <%= @company.name %>
+        <%= @buyer.name %>
       </div>
       <div>
-        $<%= @company.price %> for <%= @company.available %>% of the company
+        <p><%= @buyer.business %></p>
+        <p><%= @buyer.business_role %></p>
       </div>
     </section>
     <section>
       <div class="title">
-        Company Info:
+        Investor Info:
       </div>
       <p>
-        <%= @company.about %>
+        <%= @buyer.about %>
       </p>
     </section>
     <section>
-      <%= link_to "Message", conversations_path(company: @company), method: :post %>
+      <%= link_to "Message", conversations_path(buyer: @buyer), method: :post %>
     </section>
   </div>
   <div class="col-md-3"></div>

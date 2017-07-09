@@ -12,7 +12,12 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @exists = Conversation.where(company_id: params[:company]).first
+    if params.has_key?(:company)
+      @exists = Conversation.where(company_id: params[:company]).first
+    else
+      @exists = Conversation.where(buyer_id: params[:buyer]).first
+    end
+    
     if @exists.nil?
       @conversation = Conversation.new
       @conversation.company = Company.find_by_id(params[:company])

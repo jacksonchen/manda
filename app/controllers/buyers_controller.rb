@@ -23,7 +23,7 @@ class BuyersController < ApplicationController
   end
 
   def show
-
+    @buyer = Buyer.find_by_id(params[:id])
   end
 
   def update

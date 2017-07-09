@@ -1,14 +1,19 @@
-<div>
-  <% if @companies.length == 0 %>
-    There are no approved companies awaiting investment right now. Please check back later!
-  <% else %>
-    <% @companies.each do |company| %>
-      <%= link_to company_path(company) do %>
-        <div class="companyBlock">
-          <%= image_tag(company.logo) %>
-          <%= company.name %>
-        </div>
+<div class="container-fluid">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h3>Companies</h3>
+    <% if @companies.length == 0 %>
+      There are no approved companies awaiting investment right now. Please check back later!
+    <% else %>
+      <% @companies.each do |company| %>
+        <%= link_to company_path(company) do %>
+          <div class="companyBlock">
+            <%= image_tag(company.logo) %>
+            <%= company.name %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <div class="col-md-2"></div>
 </div>

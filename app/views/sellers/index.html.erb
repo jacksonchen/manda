@@ -1,1 +1,18 @@
-Page coming soon!
+<div class="container-fluid">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h3>Investors</h3>
+    <% if @buyers.length == 0 %>
+      There are no buyers right now. Please check back later!
+    <% else %>
+      <% @buyers.each do |buyer| %>
+        <%= link_to buyer_path(buyer) do %>
+          <div class="companyBlock">
+            <%= buyer.name %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>
