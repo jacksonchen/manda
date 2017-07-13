@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   resources :conversations, param: :id
   resources :messages
+  resources :offers
 
   # post '/notifications/:id', to: 'notifications#update_read', as: :update_notification_read
 end

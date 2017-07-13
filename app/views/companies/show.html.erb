@@ -23,6 +23,22 @@
     <section>
       <%= link_to "Message", conversations_path(company: @company), method: :post %>
     </section>
+    <section>
+      <% if !@offer.nil? %>
+        <%= form_for @offer, url: offers_path(), method: :post do |f| %>
+          <div class="form-group field">
+            <%= f.label :price %>
+            <%= f.number_field :price, class: "form-control" %>
+          </div>
+
+          <%= f.hidden_field :company_id, value: @company.id %>
+          <%= f.hidden_field :buyer_id, value: current_user.buyer.id %>
+          <%= f.hidden_field :status, value: "pending" %>
+
+          <%= f.submit "Send", class: "btn btn-default" %>
+        <% end %>
+      <% end %>
+    </section>
   </div>
   <div class="col-md-3"></div>
 </div>

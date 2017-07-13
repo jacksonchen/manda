@@ -2,7 +2,8 @@ class Buyer < ApplicationRecord
   belongs_to :user
   has_many :employers, as: :employable, dependent: :destroy
   has_many :companies
-  has_many :conversations
+  has_many :conversations, dependent: :destroy
+  has_many :offers, dependent: :destroy
   accepts_nested_attributes_for :employers, allow_destroy: true
   before_destroy :clear_employers
 

@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="col-md-3"></div>
+  <div class="col-md-6 content">
+    <h3>Offers</h3>
+    <ul class="list-group">
+      <% @offers.each do |offer| %>
+        <% if current_user.seller? %>
+          <li class="list-group-item">
+            <span class="listLeft">
+              <%= offer.buyer.name %>: $<%= offer.price %>
+            </span>
+            <span class="listRight">
+              <% if offer.status == "pending" %>
+                  <%= button_to 'Approve', offer_path(offer.id, status: "accepted"), method: :put, class: "btn btn-primary" %>
+                  <%= button_to 'Reject', offer_path(offer.id, status: "rejected"), method: :put, class: "btn btn-primary" %>
+              <% else %>
+                <%= offer.status %>
+              <% end %>
+            </span>
+          </li>
+        <% elsif current_user.buyer? %>
+          <li class="list-group-item"><%= offer.company.name %>: <%= offer.status %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-3"></div>
+</div>

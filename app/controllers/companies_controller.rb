@@ -42,6 +42,11 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find_by_id(params[:id])
+    if current_user.buyer.offers.where(company_id: params[:id]).empty?
+      @offer = Offer.new
+    else
+      @offer = nil
+    end
   end
 
   def update
