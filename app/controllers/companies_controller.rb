@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :completed_profile
 
   def index
 
@@ -42,7 +42,8 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find_by_id(params[:id])
-    if current_user.buyer.offers.where(company_id: params[:id]).empty?
+    badOfferStates = ["pending", "accepted"]
+    if current_user.buyer.offers.where(company_id: params[:id], status: badOfferStates).empty?
       @offer = Offer.new
     else
       @offer = nil

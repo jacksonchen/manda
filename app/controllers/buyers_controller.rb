@@ -1,4 +1,7 @@
 class BuyersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :is_buyer, :completed_profile, except: [:create, :new]
+
   def index
     @companies = Company.where(approval: "approved", buyer_id: nil)
   end
@@ -8,8 +11,10 @@ class BuyersController < ApplicationController
     @buyer.user_id = current_user.id
     @buyer.expertise = buyer_params[:expertise].split(',')
     if @buyer.save
+      flash[:success] = "Successfully saved your profile"
       redirect_to root_path
     else
+      flash[:error] = "There was an issue saving your profile"
       render 'new'
     end
   end
@@ -35,6 +40,9 @@ class BuyersController < ApplicationController
   end
 
   private
+    def is_buyer
+      return !user.buyer.nil?
+    end
 
     def buyer_params
       params.require(:buyer).permit(:company, :company_role, :name,

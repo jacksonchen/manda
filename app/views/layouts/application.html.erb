@@ -26,15 +26,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li>
-                <%= link_to(conversations_path) do %>
-                  <% notif = current_user.has_notifications %>
-                  Conversations
-                  <% if notif > 0 %>
-                    (<%= notif %>)
-                  <% end %>
-                <% end %>
-              </li>
+              <li><%= link_to "Conversations", conversations_path %></li>
               <li><%= link_to "Offers", offers_path %></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
             <% else %>

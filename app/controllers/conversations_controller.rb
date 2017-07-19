@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :completed_profile
   before_action :convo_permissions, only: [:show]
   # before_action :update_notifications, only: [:show]
 
@@ -17,7 +17,7 @@ class ConversationsController < ApplicationController
     else
       @exists = Conversation.where(buyer_id: params[:buyer]).first
     end
-    
+
     if @exists.nil?
       @conversation = Conversation.new
       @conversation.company = Company.find_by_id(params[:company])

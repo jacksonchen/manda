@@ -24,6 +24,7 @@ class Buyer < ApplicationRecord
 
   validates :name, :presence => true
   validates :corporate_email, :presence => true
+  validates_email_format_of :corporate_email, message: "is not valid"
   validates :phone, :presence => true
   validates :address, :presence => true
 

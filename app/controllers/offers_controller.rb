@@ -1,4 +1,6 @@
 class OffersController < ApplicationController
+  before_action :authenticate_user!, :completed_profile
+
   def index
     if current_user.buyer?
       @offers = current_user.buyer.offers

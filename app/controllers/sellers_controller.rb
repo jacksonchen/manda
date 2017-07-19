@@ -1,4 +1,7 @@
 class SellersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :is_seller, :completed_profile, except: [:create, :new]
+
   def index
     @buyers = Buyer.all
   end
@@ -40,6 +43,9 @@ class SellersController < ApplicationController
   end
 
   private
+    def is_seller
+      return !user.seller.nil?
+    end
 
     def seller_params
       params.require(:seller).permit(:company_role, :name,

@@ -1,100 +1,109 @@
-<h2>Registration for Buyer</h2>
+<div class="container-fluid">
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
+  <div class="col-md-6 col-sm-8 col-xs-10">
+    <h2>Registration for Buyer</h2>
 
-<%= nested_form_for(@buyer) do |f| %>
-  <% if @buyer.errors.any? %>
-  <ul>
-    <% @buyer.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+    <%= nested_form_for(@buyer) do |f| %>
+      <% if @buyer.errors.any? %>
+      <div class="error-field">
+        <p>Please fix the following errors:</p>
+        <ul>
+          <% @buyer.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div class="form-group field">
+        <%= f.label :business %>
+        <%= f.text_field :business, class: "form-control", autofocus: true %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :business_role %>
+        <%= f.text_field :business_role, class: "form-control" %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :corporate_email %>
+        <%= f.email_field :corporate_email, class: "form-control" %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :phone %>
+        <%= f.text_field :phone, class: "form-control" %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :gender %>
+        <%= f.select :gender, [['Male', 'male'], ['Female', 'female'], ['Other', 'other']], {}, { class: "form-control" } %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :age %>
+        <%= f.number_field :age, class: "form-control" %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :education, "Highest completed level of education" %>
+        <%= f.select :education, [['Less than High School', 'lower'], ['High School', 'high_school'],
+                                  ['Associate\'s degree', 'associate'], ['Bachelor\'s degree', 'bachelor'],
+                                  ['Master\'s degree', 'master'], ['Doctoral or professional degree', 'professional']], {}, { class: "form-control" } %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :education_institution, "Institution where you completed that level of education" %>
+        <%= f.text_field :education_institution, class: "form-control" %>
+      </div>
+
+      <%= f.fields_for :employers do |ff| %>
+        <div class="form-group field">
+          <%= ff.label :name %>
+          <%= ff.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group field">
+          <%= ff.label :role %>
+          <%= ff.text_field :role, class: "form-control" %>
+        </div>
+        <%= ff.link_to_remove "Remove previous employer", class: "btn btn-danger", role: "button" %>
+      <% end %>
+      <%= f.link_to_add "Add previous employer", :employers, class: "btn btn-default", role: "button" %>
+
+      <div class="form-group field">
+        <%= f.label :expertise, "List your areas of expertise (comma separated)" %>
+        <%= f.text_field :expertise, class: "form-control" %>
+      </div>
+
+      <div class="form-group field">
+        <%= f.label :linkedin, "Link to Linkedin profile" %>
+        <%= f.text_field :linkedin, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :startup_background, "Why do you want to buy a startup?" %>
+        <%= f.text_area :startup_background, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :about, "Tell us a bit more about yourself" %>
+        <%= f.text_area :about, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: "btn btn-primary" %>
+      </div>
     <% end %>
-  </ul>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :company %><br />
-    <%= f.text_field :company, autofocus: true %>
   </div>
-
-  <div class="field">
-    <%= f.label :company_role %><br />
-    <%= f.text_field :company_role %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :corporate_email %><br />
-    <%= f.email_field :corporate_email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.select :gender, [['Male', 'male'], ['Female', 'female'], ['Other', 'other']] %>
-  </div>
-
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.number_field :age %>
-  </div>
-
-  <div class="field">
-    <%= f.label :education, "Highest completed level of education" %><br />
-    <%= f.select :education, [['Less than High School', 'lower'], ['High School', 'high_school'],
-                              ['Associate\'s degree', 'associate'], ['Bachelor\'s degree', 'bachelor'],
-                              ['Master\'s degree', 'master'], ['Doctoral or professional degree', 'professional']] %>
-  </div>
-
-  <div class="field">
-    <%= f.label :education_institution, "Institution where you completed that level of education" %><br />
-    <%= f.text_field :education_institution %>
-  </div>
-
-  <%= f.fields_for :employers do |ff| %>
-    <div class="field">
-      <%= ff.label :name %><br />
-      <%= ff.text_field :name %>
-    </div>
-    <div class="field">
-      <%= ff.label :role %><br />
-      <%= ff.text_field :role %>
-    </div>
-    <%= ff.link_to_remove "Remove previous employer" %>
-  <% end %>
-  <%= f.link_to_add "Add previous employer", :employers %>
-
-  <div class="field">
-    <%= f.label :expertise, "List your areas of expertise (comma separated)" %><br />
-    <%= f.text_field :expertise %>
-  </div>
-
-  <div class="field">
-    <%= f.label :linkedin, "Link to Linkedin profile" %><br />
-    <%= f.text_field :linkedin %>
-  </div>
-
-  <div class="field">
-    <%= f.label :startup_background, "Why do you want to buy a startup?" %><br />
-    <%= f.text_area :startup_background %>
-  </div>
-
-  <div class="field">
-    <%= f.label :about, "Tell us a bit more about yourself" %><br />
-    <%= f.text_area :about %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
+</div>

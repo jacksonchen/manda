@@ -10,4 +10,13 @@ form {
   .inline {
     display: inline;
   }
+
+  .error-field {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    p {
+      color: #ff4759;
+    }
+  }
 }

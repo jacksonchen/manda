@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
      :omniauthable, :omniauth_providers => [:linkedin]
 
@@ -44,4 +44,9 @@ class User < ApplicationRecord
    def has_notifications
      return self.notifications.where(read: false).count
    end
+
+   protected
+    def confirmation_required?
+      true
+    end
 end

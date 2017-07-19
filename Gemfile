@@ -43,6 +43,8 @@ gem 'paperclip', '~> 5.0.0'
 # Nested forms
 gem 'nested_form'
 
+gem 'validates_email_format_of'
+
 # Multi-step forms
 gem 'wicked'
 

@@ -19,7 +19,14 @@
             </span>
           </li>
         <% elsif current_user.buyer? %>
-          <li class="list-group-item"><%= offer.company.name %>: <%= offer.status %></li>
+          <li class="list-group-item">
+            <span class="listLeft">
+              <%= offer.buyer.name %>: $<%= offer.price %>
+            </span>
+            <span class="listRight">
+              <%= offer.status %>
+            </span>
+          </li>
         <% end %>
       <% end %>
     </ul>
