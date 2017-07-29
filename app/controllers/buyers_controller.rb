@@ -41,7 +41,7 @@ class BuyersController < ApplicationController
 
   private
     def is_buyer
-      return !user.buyer.nil?
+      return current_user.buyer?
     end
 
     def buyer_params

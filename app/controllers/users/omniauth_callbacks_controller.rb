@@ -1,10 +1,15 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def linkedin
       @user = User.from_omniauth(request.env["omniauth.auth"])
+      @user.user_type = @user.user_type || request.env["omniauth.params"]["user_type"]
+      @user.skip_confirmation!
       if @user.user_type.nil?
-        @user.user_type = request.env["omniauth.params"]["user_type"]
+        @user.destroy
+        flash[:error] = "Please enter a user type"
+        redirect_to new_user_registration_path and return
+      else
+        sign_in_and_redirect @user
       end
-      sign_in_and_redirect @user
   end
   # def linkedin
   #   # You need to implement the method below in your model (e.g. app/models/user.rb)

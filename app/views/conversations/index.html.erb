@@ -13,6 +13,9 @@
           </li>
         <% end %>
       <% end %>
+      <% if @conversations.empty? %>
+        <p>You have no conversations at this time. Start one by browsing the marketplace!</p>
+      <% end %>
     </ul>
   </div>
   <div class="col-md-3"></div>

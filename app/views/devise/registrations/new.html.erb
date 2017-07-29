@@ -4,7 +4,7 @@
     <% if @user_type %>
       <h2><%= @user_type.capitalize %> sign up</h2>
     <% else %>
-      <h2>Sign up</h2>
+      <h2 id="no_user_type">Sign up</h2>
     <% end %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
@@ -43,7 +43,7 @@
       </div>
     <% end %>
 
-    <%= render "devise/shared/links" %>
+    <%= render partial: "devise/shared/links" %>
   </div>
   <div class="col-md-4 col-sm-3 col-xs-1"></div>
 </div>

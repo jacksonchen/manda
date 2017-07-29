@@ -31,7 +31,11 @@
 
   <%- if devise_mapping.omniauthable? %>
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <div class="container">
+      <% if params[:user_type] %>
+        <div class="container">
+      <% else %>
+        <div class="container oauth_no_user_type">
+      <% end %>
         <%= link_to omniauth_authorize_path(resource_name, provider, user_type: params[:user_type]) do %>
           <%= image_tag("#{OmniAuth::Utils.camelize(provider)}.png", width: "200px", alt: "Sign in with #{OmniAuth::Utils.camelize(provider)}",
                         onMouseover: "this.src='/assets/#{OmniAuth::Utils.camelize(provider)}-hover.png'",
