@@ -1,3 +1,7 @@
-<p><%= @greeting %></p>
+<% if current_user.admin? %>
 
-<p>We have more in store for you, but the rest of the site is still under construction.</p>
+<% elsif current_user.seller? %>
+  <%= render partial: 'buyer_marketplace' %>
+<% else %>
+  <%= render partial: 'companies_marketplace' %>
+<% end %>

@@ -18,7 +18,11 @@ class ApplicationController < ActionController::Base
         new_company_path
       elsif current_user.seller.company.available.nil?
         company_new_public_profile_path(current_user.seller.company)
+      else
+        user_root_path
       end
+    else
+      user_root_path
     end
   end
 

@@ -1,5 +1,7 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_user!, :completed_profile
+  before_action :authenticate_user!
+  before_action :completed_profile, except: [:new, :create, :new_public_profile, :create_public_profile]
+  before_action :check_seller, only: [:new, :create, :new_public_profile, :create_public_profile]
 
   def index
 
@@ -18,7 +20,7 @@ class CompaniesController < ApplicationController
         invite.sender = current_user
         if !User.find_by_email(invite.email).nil?
           invite.recipient = User.find_by_email(invite.email)
-          FounderMailer.welcome(invite, request.base_url + new_user_session(:token => invite.token)).deliver
+          FounderMailer.welcome(invite, request.base_url + new_user_session_path(:token => invite.token)).deliver
         else
           FounderMailer.welcome(invite, request.base_url + new_user_registration_path(:token => invite.token)).deliver
         end
@@ -43,11 +45,6 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find_by_id(params[:id])
     badOfferStates = ["pending", "accepted"]
-    if current_user.buyer.offers.where(company_id: params[:id], status: badOfferStates).empty?
-      @offer = Offer.new
-    else
-      @offer = nil
-    end
   end
 
   def update
@@ -81,7 +78,6 @@ class CompaniesController < ApplicationController
   end
 
   private
-
     def company_params
       params.require(:company).permit(:name, :url, :email, :phone,
       :price, :founded, :opportunity, :location, :financials,
@@ -95,6 +91,11 @@ class CompaniesController < ApplicationController
     def profile_params
       params.require(:company).permit(:about, :available,
         :financials, :user_base, :growth)
+    end
 
+    def check_seller
+      if current_user.seller.nil?
+        redirect_to new_seller_path
+      end
     end
 end

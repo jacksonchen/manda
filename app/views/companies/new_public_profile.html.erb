@@ -1,32 +1,39 @@
-<h2>Company Public Profile</h2>
+<div class="container-fluid">
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
+  <div class="col-md-6 col-sm-8 col-xs-10">
+    <h2>Company Public Profile</h2>
+    <p>This is what investors will see when browsing your company profile on the marketplace.</p>
 
-<%= form_for @company, url: company_create_public_profile_path(@company), method: :post do |f| %>
-  <div class="field">
-    <%= f.label :about, "About" %><br />
-    <%= f.text_area :about, autofocus: true %>
-  </div>
+    <%= form_for @company, url: company_create_public_profile_path(@company), method: :post do |f| %>
+      <div class="form-group field">
+        <%= f.label :about, "About" %>
+        <%= f.text_area :about, class: "form-control", autofocus: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :available, "% of company being sold" %><br />
-    <%= f.number_field :available %>
-  </div>
+      <div class="form-group field">
+        <%= f.label :available, "% of company being sold" %>
+        <%= f.number_field :available, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :financials, "Financial data" %><br />
-    <%= f.text_area :financials %>
-  </div>
+      <div class="form-group field">
+        <%= f.label :financials, "Financial data" %>
+        <%= f.text_area :financials, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :user_base, "Userbase" %><br />
-    <%= f.text_area :user_base %>
-  </div>
+      <div class="form-group field">
+        <%= f.label :user_base, "Userbase" %>
+        <%= f.text_area :user_base, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :growth, "Traffic and growth" %><br />
-    <%= f.text_area :growth %>
-  </div>
+      <div class="form-group field">
+        <%= f.label :growth, "Traffic and growth" %>
+        <%= f.text_area :growth, class: "form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Save Profile" %>
+      <div class="actions">
+        <%= f.submit "Save Profile", class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
+</div>
