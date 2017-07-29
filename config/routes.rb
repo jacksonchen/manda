@@ -3,7 +3,7 @@ Rails.application.routes.draw do
                                        :registrations => "users/registrations"}
 
   authenticated :user do
-    root 'dashboard#index', as: :authenticated_root
+    root 'dashboard#index', as: :user_root
   end
 
   root to: 'static_page#index'
@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   resources :conversations, param: :id
   resources :messages
-  resources :offers
 
   # post '/notifications/:id', to: 'notifications#update_read', as: :update_notification_read
 end
