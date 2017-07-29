@@ -47,6 +47,10 @@ class User < ApplicationRecord
 
    protected
     def confirmation_required?
-      true
+      if self.provider
+        false
+      else
+        true
+      end
     end
 end

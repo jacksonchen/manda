@@ -2,7 +2,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def linkedin
       @user = User.from_omniauth(request.env["omniauth.auth"])
       @user.user_type = @user.user_type || request.env["omniauth.params"]["user_type"]
-      @user.skip_confirmation!
       if @user.user_type.nil?
         @user.destroy
         flash[:error] = "Please enter a user type"
