@@ -21,7 +21,7 @@ class Company < ApplicationRecord
     approved: 2,
   }
 
-  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png", validate_media_type: false
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
   has_attached_file :funding_report
@@ -44,7 +44,7 @@ class Company < ApplicationRecord
   validates :approval, :presence => true
 
   validates_attachment :logo, #:presence => true,
-    content_type: { content_type: ["image/jpeg", "image/png"] },
+    content_type: { content_type: ["image/jpeg", "image/png", "image/svg+xml"] },
     size: { in: 0..3.megabytes }
 
   validates_attachment :funding_report, #:presence => true,
@@ -70,5 +70,4 @@ class Company < ApplicationRecord
   validates_attachment :equity_division, #:presence => true,
     content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
     size: { in: 0..10.megabytes }
-
 end

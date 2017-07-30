@@ -38,7 +38,10 @@
 
       <div class="form-group field">
         <%= f.label :price, "Selling Price" %>
-        <%= f.text_field :price, class: "form-control" %>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <%= f.text_field :price, class: "form-control" %>
+        </div>
       </div>
 
       <div class="form-group field">
@@ -76,32 +79,32 @@
 
       <div class="form-group field">
         <%= f.label :logo, "Company Logo" %>
-        <%= f.file_field :logo, class: "form-control" %>
+        <%= f.file_field :logo %>
       </div>
 
       <div class="form-group field">
         <%= f.label :funding_report, "Previous Funding Reports" %>
-        <%= f.file_field :funding_report, class: "form-control" %>
+        <%= f.file_field :funding_report %>
       </div>
 
       <div class="form-group field">
         <%= f.label :finances, "Financial Statements" %>
-        <%= f.file_field :finances, class: "form-control" %>
+        <%= f.file_field :finances %>
       </div>
 
       <div class="form-group field">
         <%= f.label :llc, "LLC Registration" %>
-        <%= f.file_field :llc, class: "form-control" %>
+        <%= f.file_field :llc %>
       </div>
 
       <div class="form-group field">
         <%= f.label :tax, "Tax Returns" %>
-        <%= f.file_field :tax, class: "form-control" %>
+        <%= f.file_field :tax %>
       </div>
 
       <div class="form-group field">
         <%= f.label :equity_division, "Equity division between Founders Contract" %>
-        <%= f.file_field :equity_division, class: "form-control" %>
+        <%= f.file_field :equity_division %>
       </div>
 
       <div class="form-group field">
