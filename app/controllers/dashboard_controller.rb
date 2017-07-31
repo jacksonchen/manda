@@ -6,6 +6,14 @@ class DashboardController < ApplicationController
     if current_user.user_type == "seller" && current_user.seller.company.approval == "pending"
       @greeting = "hello, your company is still under review."
     end
+
+    if current_user.buyer?
+      @iterable = Company.where(approval: 2, buyer_id: nil)
+    elsif current_user.seller?
+      @iterable = Seller.where(approval: 2)
+    else
+      @iterable = nil
+    end
   end
 
   def admin_index

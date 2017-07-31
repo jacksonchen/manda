@@ -42,32 +42,69 @@ class Company < ApplicationRecord
   validates :legal, :presence => true
   validates :price, :presence => true
   validates :approval, :presence => true
+  validates :summary, length: { maximum: 100 }
 
-  validates_attachment :logo, #:presence => true,
+  validates_attachment :logo,
     content_type: { content_type: ["image/jpeg", "image/png", "image/svg+xml"] },
     size: { in: 0..3.megabytes }
 
-  validates_attachment :funding_report, #:presence => true,
-    content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
+  validates_attachment :funding_report,
+    content_type: { content_type: ["application/pdf",
+                                   "application/msword",
+                                   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                   "application/vnd.ms-excel",
+                                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                   "image/jpeg",
+                                   "image/png"] },
     size: { in: 0..10.megabytes }
 
   validates_attachment :userbase_analytics,
-    content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
+    content_type: { content_type: ["application/pdf",
+                                   "application/msword",
+                                   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                   "application/vnd.ms-excel",
+                                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                   "image/jpeg",
+                                   "image/png"] },
     size: { in: 0..10.megabytes }
 
-  validates_attachment :finances, #:presence => true,
-    content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
+  validates_attachment :finances,
+    content_type: { content_type: ["application/pdf",
+                                   "application/msword",
+                                   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                   "application/vnd.ms-excel",
+                                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                   "image/jpeg",
+                                   "image/png"] },
     size: { in: 0..10.megabytes }
 
-  validates_attachment :llc, #:presence => true,
-    content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
+  validates_attachment :llc,
+    content_type: { content_type: ["application/pdf",
+                                   "application/msword",
+                                   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                   "application/vnd.ms-excel",
+                                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                   "image/jpeg",
+                                   "image/png"] },
     size: { in: 0..10.megabytes }
 
-  validates_attachment :tax, #:presence => true,
-    content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
+  validates_attachment :tax,
+    content_type: { content_type: ["application/pdf",
+                                   "application/msword",
+                                   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                   "application/vnd.ms-excel",
+                                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                   "image/jpeg",
+                                   "image/png"] },
     size: { in: 0..10.megabytes }
 
-  validates_attachment :equity_division, #:presence => true,
-    content_type: { content_type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png"] },
+  validates_attachment :equity_division,
+    content_type: { content_type: ["application/pdf",
+                                   "application/msword",
+                                   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                   "application/vnd.ms-excel",
+                                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                   "image/jpeg",
+                                   "image/png"] },
     size: { in: 0..10.megabytes }
 end

@@ -11,6 +11,12 @@ class Seller < ApplicationRecord
     other: 2
   }
 
+  enum approval: {
+    rejected: 0,
+    pending: 1,
+    approved: 2,
+  }
+
   enum education: {
     lower: 0,
     high_school: 1,
@@ -25,6 +31,8 @@ class Seller < ApplicationRecord
   validates :phone, :presence => true
   validates :address, :presence => true
   validates :equity, :presence => true
+  validates :approval, :presence => true
+  validates :summary, :presence => true, length: { maximum: 100 }
 
   private
 

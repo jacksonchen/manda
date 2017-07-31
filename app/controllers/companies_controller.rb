@@ -89,7 +89,7 @@ class CompaniesController < ApplicationController
     end
 
     def profile_params
-      params.require(:company).permit(:about, :available,
+      params.require(:company).permit(:about, :available, :summary,
         :financials, :user_base, :growth)
     end
 

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
         new_seller_path
       elsif current_user.seller.company.nil?
         new_company_path
-      elsif current_user.seller.company.available.nil?
+      elsif current_user.seller.company.summary.blank?
         company_new_public_profile_path(current_user.seller.company)
       else
         user_root_path
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
         redirect_to new_seller_path
       elsif current_user.seller.company.nil?
         redirect_to new_company_path
-      elsif current_user.seller.company.available.nil?
+      elsif current_user.seller.company.summary.blank?
         redirect_to company_new_public_profile_path(current_user.seller.company)
       end
     end

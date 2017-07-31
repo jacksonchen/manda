@@ -1,7 +1,15 @@
-<% if current_user.admin? %>
+<div class="container-fluid">
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
+  <div class="col-md-6 col-sm-8 col-xs-10">
+    <div class="content">
+      <% if current_user.admin? %>
 
-<% elsif current_user.seller? %>
-  <%= render partial: 'buyer_marketplace' %>
-<% else %>
-  <%= render partial: 'companies_marketplace' %>
-<% end %>
+      <% elsif current_user.seller? %>
+        <%= render partial: 'buyers_marketplace' %>
+      <% else %>
+        <%= render partial: 'companies_marketplace' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
+</div>

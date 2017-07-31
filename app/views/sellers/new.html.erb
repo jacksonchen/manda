@@ -100,6 +100,14 @@
         <%= f.text_area :about, class: "form-control" %>
       </div>
 
+      <div class="form-group field">
+        <%= f.label :summary, "Summary (This will be your public title)" %>
+        <%= f.text_field :summary, class: "form-control" %>
+        <small class="text-muted">Please do not include any directly identifiable information. Must be under 100 characters.</small>
+      </div>
+
+      <%= f.hidden_field :approval, value: "pending" %>
+
       <div class="actions">
         <%= f.submit "Sign up", class: "btn btn-primary" %>
       </div>
