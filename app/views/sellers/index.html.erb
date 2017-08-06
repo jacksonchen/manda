@@ -8,7 +8,14 @@
       <% @buyers.each do |buyer| %>
         <%= link_to buyer_path(buyer) do %>
           <div class="companyBlock">
-            <%= buyer.name %>
+            <div class="summary">
+              <div class="text">
+                <%= buyer.summary %>
+              </div>
+            </div>
+            <div class="details">
+              <%= buyer.business_role %>
+            </div>
           </div>
         <% end %>
       <% end %>

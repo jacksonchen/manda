@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170731005326) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "user_id"
+    t.string   "summary"
+    t.integer  "approval"
     t.index ["user_id"], name: "index_buyers_on_user_id", unique: true, using: :btree
   end
 
@@ -184,8 +186,6 @@ ActiveRecord::Schema.define(version: 20170731005326) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "user_id"
-    t.string   "summary"
-    t.integer  "approval"
     t.index ["company_id"], name: "index_sellers_on_company_id", using: :btree
     t.index ["user_id"], name: "index_sellers_on_user_id", unique: true, using: :btree
   end

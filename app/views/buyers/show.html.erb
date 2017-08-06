@@ -1,21 +1,36 @@
 <div class="container-fluid">
-  <div class="col-md-3"></div>
-  <div class="col-md-6 centerContent">
-    <section>
-      <h1>Investor Profile</h1>
-      <h3><%= @buyer.business_role %> at <%= @buyer.business %></h3>
-    </section>
-    <section>
+  <div class="col-md-2"></div>
+  <div class="col-md-8 profile">
+    <section class="content">
       <div class="title">
-        Investor Info:
+        <%= @buyer.summary %>
       </div>
-      <p>
-        <%= @buyer.about %>
-      </p>
+      <div class="details">
+        <div class="expertise">
+          Expertise:
+          <%= @buyer.expertise.join(',') %>
+        </div>
+        <div class="business_role">
+          Business Role: <%= @buyer.business_role %>
+        </div>
+        <div class="business">
+          Business: <%= @buyer.business %>
+        </div>
+      </div>
+      <div class="descriptions">
+        <div class="about">
+          <b>About</b>
+          <p><%= @buyer.about %></p>
+        </div>
+        <div class="startup_background">
+          <b>Startup Background</b>
+          <p><%= @buyer.startup_background %></p>
+        </div>
+      </div>
     </section>
     <section>
-      <%= link_to "Message", conversations_path(buyer: @buyer), method: :post %>
+      <%= link_to "Message", conversations_path(buyer: @buyer), method: :post, class: "btn btn-primary" %>
     </section>
   </div>
-  <div class="col-md-3"></div>
+  <div class="col-md-2"></div>
 </div>

@@ -8,8 +8,19 @@
       <% @companies.each do |company| %>
         <%= link_to company_path(company) do %>
           <div class="companyBlock">
-            <%= image_tag company.logo %>
-            <%= company.name %>
+            <div class="summary">
+              <div class="text">
+                <%= company.summary %>
+              </div>
+            </div>
+            <div class="details">
+              <div class="founded">
+                <%= company.founded %>
+              </div>
+              <div class="location">
+                <%= company.location %>
+              </div>
+            </div>
           </div>
         <% end %>
       <% end %>

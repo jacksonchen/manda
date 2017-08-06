@@ -1,28 +1,50 @@
 <div class="container-fluid">
-  <div class="col-md-3"></div>
-  <div class="col-md-6 centerContent">
-    <aside>
-      <%= image_tag(@company.logo) %>
-    </aside>
-    <section>
-      <div>
-        <%= @company.name %>
-      </div>
-      <div>
-        $<%= @company.price %> for <%= @company.available %>% of the company
-      </div>
-    </section>
-    <section>
+  <div class="col-md-2"></div>
+  <div class="col-md-8 profile">
+    <section class="content">
       <div class="title">
-        Company Info:
+        <%= @company.summary %>
       </div>
-      <p>
-        <%= @company.about %>
-      </p>
+      <div class="details">
+        <div class="categories">
+          Categories:
+          <%= @company.company_categories.pluck(:name).join(',') %>
+        </div>
+        <div class="founded">
+          Founded: <%= @company.founded %>
+        </div>
+        <div class="available">
+          Percentage of Company available: <%= @company.available %>
+        </div>
+        <div class="price">
+          Fetching price: <%= @company.price %>
+        </div>
+        <div class="opportunity">
+          Reason: <%= @company.opportunity.humanize %>
+        </div>
+      </div>
+      <div class="descriptions">
+        <div class="about">
+          <b>About</b>
+          <p><%= @company.about %></p>
+        </div>
+        <div class="financials">
+          <b>Financials</b>
+          <p><%= @company.financials %></p>
+        </div>
+        <div class="user_base">
+          <b>User base</b>
+          <p><%= @company.user_base %></p>
+        </div>
+        <div class="growth">
+          <b>Traffic and growth</b>
+          <p><%= @company.growth %></p>
+        </div>
+      </div>
     </section>
     <section>
-      <%= link_to "Message", conversations_path(company: @company), method: :post %>
+      <%= link_to "Message", conversations_path(company: @company), method: :post, class: "btn btn-primary" %>
     </section>
   </div>
-  <div class="col-md-3"></div>
+  <div class="col-md-2"></div>
 </div>

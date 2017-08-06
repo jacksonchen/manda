@@ -27,6 +27,8 @@ class Buyer < ApplicationRecord
   validates_email_format_of :corporate_email, message: "is not valid"
   validates :phone, :presence => true
   validates :address, :presence => true
+  validates :summary, :presence => true
+  validates :business_role, :presence => true
 
   private
 

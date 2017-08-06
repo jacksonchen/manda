@@ -3,7 +3,7 @@ class BuyersController < ApplicationController
   before_action :is_buyer, :completed_profile, except: [:create, :new]
 
   def index
-    @companies = Company.where(approval: "approved", buyer_id: nil)
+    @companies = Company.where(approval: 2, buyer_id: nil)
   end
 
   def create

@@ -6,9 +6,9 @@ class Conversation < ApplicationRecord
 
   def getPartner(user)
     if user.buyer?
-      return self.company.name
+      return self.company.summary
     else
-      return self.buyer.name
+      return self.buyer.summary
     end
   end
 end

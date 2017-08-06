@@ -1,1 +1,9 @@
-Lol
+<div id="marketplace">
+  <% @iterable.each do |object| %>
+    <%= link_to company_path(company) do %>
+      <div class="iterable">
+        <%= object.summary %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
