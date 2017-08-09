@@ -18,8 +18,7 @@
           <% end %>
         </div>
       <% else %>
-        <div class="hidden" id="messages">
-        </div>
+        <div class="hidden" id="messages"></div>
       <% end %>
       <%= render partial: 'messages/message_form', locals: { message: @message, conversation: @conversation } %>
     </section>

@@ -1,6 +1,7 @@
 <%= form_for message, url: messages_path, method: :post, remote: true, authenticity_token: true do |f| %>
-  <%= f.label "Your message:" %>
-  <%= f.text_area :content, class: "form-control", data: {textarea: "message"} %>
+  <div class="form-group field">
+    <%= f.text_area :content, placeholder: "Type your message", class: "form-control", data: {textarea: "message"} %>
+  </div>
 
   <%= f.hidden_field :conversation_id, value: conversation.id %>
   <%= f.submit "send", class: "btn btn-primary", data: {send: "message"} %>
